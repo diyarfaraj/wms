@@ -14,5 +14,7 @@ namespace Indotalent.Models.Entities
         public UnitMeasure? UnitMeasure { get; set; }
         public required int ProductGroupId { get; set; }
         public ProductGroup? ProductGroup { get; set; }
+        public double Quantity { get; set; }
+        public double LowQuantityLimit { get; set; }
     }
 }
