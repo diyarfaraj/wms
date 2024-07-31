@@ -50,11 +50,14 @@
                     },
                     { field: 'CreatedAtUtc', width: 100, format: 'yyyy-MM-dd HH:ss', textAlign: 'Left', type: 'dateTime' },
                     { field: 'Name', width: 100 },
+                    { field: 'Quantity', width: 150, type: 'number', textAlign: 'Right', format: 'N2' },
+                    { field: 'LowQuantityLimit', width: 170, type: 'number', textAlign: 'Right', format: 'N2' },
                     { field: 'Number', width: 100 },
                     { field: 'ProductGroup', width: 100 },
                     { field: 'UnitMeasure', width: 100 },
                     { field: 'Physical', width: 100, textAlign: 'Center', displayAsCheckBox: true, type: 'boolean' },
                     { field: 'UnitPrice', width: 100, type: 'number', textAlign: 'Right', format: 'N2' },
+
                 ],
                 toolbar: [
                     'ExcelExport', 'Search',
@@ -67,7 +70,7 @@
                 },
                 dataBound: function () {
                     grid.toolbarModule.enableItems(['EditCustom', 'DeleteCustom'], false);
-                    grid.autoFitColumns(['CreatedAtUtc', 'Name', 'Number', 'ProductGroup', 'UnitMeasure', 'Physical', 'UnitPrice']);
+                    grid.autoFitColumns(['CreatedAtUtc', 'Name', 'Quantity', 'LowQuantityLimit', 'Number', 'ProductGroup', 'UnitMeasure', 'Physical', 'UnitPrice']);
                 },
                 excelExportComplete: () => {
                 },
@@ -129,8 +132,14 @@
 
                         }
                     }
-
-                }
+                  
+                },
+                  rowDataBound: (args) => {
+                        if (args.data.Quantity <= args.data.LowQuantityLimit) {
+                            args.row.style.backgroundColor = '#ff00007d';
+                            args.row.style.color = 'white';
+                        }
+                    }
             });
 
 

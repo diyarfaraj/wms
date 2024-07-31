@@ -93,6 +93,7 @@ namespace Indotalent.Pages.SalesOrders
         public ICollection<object> ProductLookup { get; set; } = default!;
         public ICollection<object> PriceLookup { get; set; } = default!;
         public ICollection<object> NumberLookup { get; set; } = default!;
+        public ICollection<object> QuantityLookup { get; set; } = default!;
         private void BindLookup()
         {
 
@@ -119,6 +120,10 @@ namespace Indotalent.Pages.SalesOrders
 
             NumberLookup = _productService.GetAll()
                 .Select(x => new { ProductId = x.Id, ProductNumber = x.Number } as object)
+                .ToList();
+            
+            QuantityLookup = _productService.GetAll()
+                .Select(x => new { ProductId = x.Id, ProductQuantity = x.Quantity } as object) // Add this line
                 .ToList();
 
 

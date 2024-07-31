@@ -11,5 +11,7 @@
         public string? UnitMeasure { get; set; }
         public Guid? RowGuid { get; set; }
         public DateTime? CreatedAtUtc { get; set; }
+        public double? Quantity { get; set; }
+        public double? LowQuantityLimit { get; set; }
     }
 }

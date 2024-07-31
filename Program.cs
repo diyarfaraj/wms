@@ -105,6 +105,7 @@ using (var scope = app.Services.CreateScope())
     if (appConfig.Value.IsDevelopment)
     {
         context.Database.EnsureCreated();//<===*** Development Only !!! ***
+        //context.Database.EnsureDeleted();
     }
     await DbInitializer.InitializeAsync(services);
 }

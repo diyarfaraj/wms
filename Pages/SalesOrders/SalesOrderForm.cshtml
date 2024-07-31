@@ -11,6 +11,7 @@
     var productLookupJson = JsonSerializer.Serialize(Model.ProductLookup);
     var priceLookupJson = JsonSerializer.Serialize(Model.PriceLookup);
     var numberLookupJson = JsonSerializer.Serialize(Model.NumberLookup);
+    var quantityLookupJson = JsonSerializer.Serialize(Model.QuantityLookup);
 }
 
 <div class="form-card">
@@ -187,6 +188,11 @@
             numberLookup[product.ProductId] = product.ProductNumber;
         });
 
+        var quantities = @Html.Raw(quantityLookupJson);
+        var quantityLookup = {};
+        quantities.forEach(function (product) {
+            quantityLookup[product.ProductId] = product.ProductQuantity;
+        });
 
         var gridContainer = document.getElementById('Grid');
         if (gridContainer) {
@@ -251,6 +257,15 @@
                                 productObj.appendTo(productElem);
                             }
                         },
+                    },
+                    {
+                        headerText: 'Current Quantity',
+                        width: 100,
+                        allowEditing: false,
+                        disableHtmlEncode: false,
+                        valueAccessor: (field, data, column) => {
+                            return quantityLookup[data.ProductId] || 0;
+                        }
                     },
                     { 
                         field: 'Summary', 
@@ -319,6 +334,11 @@
                 beforeDataBound: () => {
                 },
                 dataBound: function () {
+                    grid.columns.forEach(column => {
+                        if (column.field === 'CurrentQuantity') {
+                            column.editType = 'none';
+                        }
+                    });
                 },
                 excelExportComplete: () => {
                 },
@@ -344,7 +364,9 @@
                 actionComplete: (args) => {
 
                     if (args.requestType === 'save' || args.requestType === 'delete') {
-
+                        if (args.data && args.data['CurrentQuantity']) {
+                            delete args.data['CurrentQuantity'];
+                        }
                         let message = 'Delete Process Success';
                         switch (args.action) {
                             case 'add':
@@ -389,8 +411,6 @@
                     }
                 }
             });
-
-
             grid.appendTo('#Grid');
         }
 

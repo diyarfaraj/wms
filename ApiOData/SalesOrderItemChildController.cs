@@ -71,6 +71,12 @@ namespace Indotalent.ApiOData
         {
             try
             {
+
+                //if (delta == null)
+                //{
+                //    return BadRequest("Invalid patch document");
+                //}
+
                 var salesOrderItem = await _salesOrderItemService
                     .GetAll()
                     .Where(x => x.Id == key)

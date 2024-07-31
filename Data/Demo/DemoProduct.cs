@@ -29,6 +29,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 5000.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -38,6 +40,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 2000.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -47,6 +51,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 3000.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -56,6 +62,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 1500.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -65,6 +73,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 1000.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -74,6 +84,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "m").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 100.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -83,6 +95,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 1000.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -92,6 +106,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 2000.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -101,6 +117,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 1000.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -110,6 +128,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 500.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -119,6 +139,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 800.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -128,6 +150,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 1000.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -137,6 +161,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 1500.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -146,6 +172,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 700.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -155,6 +183,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 500.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -164,6 +194,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 1000.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -173,6 +205,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 1500.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -182,6 +216,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = true,
                 UnitPrice = 500.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -191,6 +227,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "unit").FirstOrDefault()!.Id,
                 Physical = false,
                 UnitPrice = 800.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
             await productService.AddAsync(new Product
             {
@@ -200,6 +238,8 @@ namespace Indotalent.Data.Demo
                 UnitMeasureId = unitMeasureService.GetAll().Where(x => x.Name == "hour").FirstOrDefault()!.Id,
                 Physical = false,
                 UnitPrice = 500.0,
+                Quantity = 10,
+                LowQuantityLimit = 3,
             });
         }
     }

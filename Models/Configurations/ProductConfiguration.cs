@@ -14,6 +14,8 @@ namespace Indotalent.Models.Configurations
             builder.Property(c => c.UnitMeasureId).IsRequired();
             builder.Property(c => c.Number).HasMaxLength(100);
             builder.Property(c => c.Description).HasMaxLength(255);
+            builder.Property(c => c.Quantity).HasMaxLength(100);
+            builder.Property(c => c.LowQuantityLimit).HasMaxLength(100);
         }
     }
 }

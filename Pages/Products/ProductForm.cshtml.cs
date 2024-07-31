@@ -65,6 +65,12 @@ namespace Indotalent.Pages.Products
 
             [DisplayName("Physical Product?")]
             public bool Physical { get; set; } = true;
+
+            [DisplayName("Quantity")]
+            public double Quantity { get; set; } = 0;
+
+            [DisplayName("Low Quantity Limit")]
+            public double LowQuantityLimit { get; set; } = 0;
         }
 
         public class MappingProfile : Profile
