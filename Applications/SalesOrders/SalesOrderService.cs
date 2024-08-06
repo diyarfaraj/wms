@@ -1,25 +1,32 @@
-﻿using Indotalent.Data;
+﻿using Indotalent.Applications.Products;
+using Indotalent.Data;
 using Indotalent.Infrastructures.Repositories;
 using Indotalent.Models.Contracts;
 using Indotalent.Models.Entities;
+using Indotalent.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace Indotalent.Applications.SalesOrders
 {
     public class SalesOrderService : Repository<SalesOrder>
     {
+        private readonly ApplicationDbContext _context;
+        private readonly ProductService _productService;
         public SalesOrderService(
             ApplicationDbContext context,
             IHttpContextAccessor httpContextAccessor,
-            IAuditColumnTransformer auditColumnTransformer) :
+            IAuditColumnTransformer auditColumnTransformer, 
+            ProductService productService) :
                 base(
                     context,
                     httpContextAccessor,
                     auditColumnTransformer)
         {
+            _context = context;
+            _productService = productService;
         }
 
-
+        // TODO: Update products database when order is confirmed, 
         public async Task RecalculateParentAsync(int? masterId)
         {
 
@@ -53,25 +60,37 @@ namespace Indotalent.Applications.SalesOrders
 
         public override async Task UpdateAsync(SalesOrder? entity)
         {
-            if (entity != null)
+            if (entity == null)
+                throw new Exception("Entity is null");
+
+            // Load the existing order to compare statuses
+            var existingOrder = await _context.SalesOrder.AsNoTracking().FirstOrDefaultAsync(x => x.Id == entity.Id);
+            if (existingOrder == null)
+                throw new Exception("Existing entity not found");
+
+            if (entity.OrderStatus == SalesOrderStatus.Confirmed && existingOrder.OrderStatus != SalesOrderStatus.Confirmed)
             {
-                if (entity is IHasAudit auditEntity && !string.IsNullOrEmpty(_userId))
-                {
-                    auditEntity.UpdatedByUserId = _userId;
-                }
-                if (entity is IHasAudit auditedEntity)
-                {
-                    auditedEntity.UpdatedAtUtc = DateTime.Now;
-                }
-
-                _context.Set<SalesOrder>().Update(entity);
-                await _context.SaveChangesAsync();
-
-                await RecalculateParentAsync(entity.Id);
+                // Deduct quantities from products only if the status is being set to Confirmed
+                await UpdateProductQuantitiesForOrder(entity.Id);
             }
-            else
+
+            // Standard audit and update operations
+            if (entity is IHasAudit auditedEntity && !string.IsNullOrEmpty(_userId))
             {
-                throw new Exception("Unable to process, entity is null");
+                auditedEntity.UpdatedByUserId = _userId;
+                auditedEntity.UpdatedAtUtc = DateTime.Now;
+            }
+
+            _context.Update(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        private async Task UpdateProductQuantitiesForOrder(int orderId)
+        {
+            var orderItems = await _context.SalesOrderItem.Where(x => x.SalesOrderId == orderId).ToListAsync();
+            foreach (var item in orderItems)
+            {
+                await _productService.UpdateProductQuantity(item.ProductId, -item.Quantity ?? 0);
             }
         }
 
